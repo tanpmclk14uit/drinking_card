@@ -22,17 +22,17 @@ class HomeScreen extends StatelessWidget {
                 children: const [
                   AppTitle(),
                   SizedBox(height: 50),
-                  HomeButton(Icon(Icons.play_circle_fill_outlined), "Continue"),
+                  HomeButton(Icon(Icons.play_circle_fill_outlined), "Tiếp tục"),
                   SizedBox(
                     height: 7,
                   ),
                   SpecialButton(),
                   SizedBox(height: 7),
-                  HomeButton(Icon(Icons.edit), "Custom card"),
+                  HomeButton(Icon(Icons.edit), "Chỉnh sửa thẻ"),
                   SizedBox(height: 7),
-                  HomeButton(Icon(Icons.settings), "Setting"),
+                  HomeButton(Icon(Icons.settings), "Cài đặt"),
                   SizedBox(height: 7),
-                  HomeButton(Icon(Icons.exit_to_app), "Wife call")
+                  HomeButton(Icon(Icons.exit_to_app), "Vợ gọi")
                 ],
               ),
             ),

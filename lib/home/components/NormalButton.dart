@@ -17,7 +17,7 @@ class HomeButton extends StatelessWidget {
         label: Text(
           label,
           style: const TextStyle(
-            fontFamily: "Montserrat",
+            fontFamily: "Facebook",
             fontSize: 21,
             fontWeight: FontWeight.normal,
           ),

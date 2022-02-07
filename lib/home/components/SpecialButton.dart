@@ -29,11 +29,11 @@ class SpecialButton extends StatelessWidget {
               SvgPicture.asset("assets/icons/special_icon.svg"),
               const SizedBox(width: 10),
               Text(
-                "Drink now!",
+                "Ván mới",
                 style: TextStyle(
                     color: specialButtonText,
                     fontSize: 21,
-                    fontFamily: "Montserrat"),
+                    fontFamily: "Facebook"),
               )
             ],
             mainAxisAlignment: MainAxisAlignment.center,
