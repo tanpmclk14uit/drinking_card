@@ -1,8 +1,8 @@
 import 'package:drinking_card/presentation/widgets/title.dart';
 import 'package:drinking_card/constraint.dart';
 import 'package:flutter/material.dart';
-import '../widgets/NormalButton.dart';
-import '../widgets/SpecialButton.dart';
+import '../widgets/normal_button.dart';
+import '../widgets/special_button.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);

@@ -1,4 +1,5 @@
 import 'package:drinking_card/presentation/Screen/home.dart';
+import 'package:drinking_card/presentation/screen/setting.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -15,7 +16,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const HomeScreen(),
+      home: SettingScreen(),
     );
   }
 }
