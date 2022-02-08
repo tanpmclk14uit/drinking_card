@@ -1,9 +1,8 @@
-import 'package:drinking_card/components/title.dart';
+import 'package:drinking_card/presentation/widgets/title.dart';
 import 'package:drinking_card/constraint.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'components/NormalButton.dart';
-import 'components/SpecialButton.dart';
+import '../widgets/NormalButton.dart';
+import '../widgets/SpecialButton.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);

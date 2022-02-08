@@ -1,4 +1,4 @@
-import 'package:drinking_card/home/home.dart';
+import 'package:drinking_card/presentation/Screen/home.dart';
 import 'package:flutter/material.dart';
 
 void main() {
