@@ -1,19 +1,22 @@
+import 'package:drinking_card/presentation/screen/playing.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import '../../constraint.dart';
 
 class SpecialButton extends StatelessWidget {
   const SpecialButton({
-    Key? key,
+    Key? key, required this.content,
   }) : super(key: key);
 
+  final String content;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: ()=>{},
+      onTap: ()=> {
+        Navigator.of(context).push(MaterialPageRoute(builder: (context) => PlayingScreen(previousCardCount: 20,),))
+      },
       child: Container(
           height: 50,
-          margin: homeButtonMargin,
           decoration: BoxDecoration(
               color: Colors.white,
               boxShadow: [
@@ -29,7 +32,7 @@ class SpecialButton extends StatelessWidget {
               SvgPicture.asset("assets/icons/special_icon.svg"),
               const SizedBox(width: 10),
               Text(
-                "Ván mới",
+                content,
                 style: TextStyle(
                     color: specialButtonText,
                     fontSize: 21,

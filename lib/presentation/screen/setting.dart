@@ -1,5 +1,4 @@
 import 'package:drinking_card/constraint.dart';
-import 'package:drinking_card/presentation/widgets/normal_button.dart';
 import 'package:drinking_card/presentation/widgets/title.dart';
 import 'package:flutter/material.dart';
 
@@ -40,7 +39,8 @@ class _SettingScreenState extends State<SettingScreen> {
                     const AppTitle(),
                     const SizedBox(height: 30),
                     Container(
-                        margin: const EdgeInsets.symmetric(horizontal: 50),
+                        alignment: Alignment.center,
+                        margin: const EdgeInsets.symmetric(horizontal: 30),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.stretch,
                           children: <Widget>[
@@ -147,13 +147,19 @@ class _SettingScreenState extends State<SettingScreen> {
                                 )
                               ],
                             ),
-                            const SizedBox(height: 10,),
+                            const SizedBox(
+                              height: 10,
+                            ),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: <Widget>[
                                 Expanded(
                                   child: FloatingActionButton.extended(
-                                    onPressed: () => {},
+                                    onPressed: () => {
+                                      //Back to main screen
+                                      Navigator.of(context).pop()
+                                    },
+                                    heroTag: "back",
                                     icon: const Icon(Icons.exit_to_app),
                                     foregroundColor: primaryTextColor,
                                     label: const Text(
@@ -170,7 +176,10 @@ class _SettingScreenState extends State<SettingScreen> {
                                 const SizedBox(width: 10),
                                 Expanded(
                                   child: FloatingActionButton.extended(
-                                    onPressed: () => {},
+                                    heroTag: "save",
+                                    onPressed: () => {
+                                      //Save
+                                    },
                                     icon: const Icon(Icons.save),
                                     foregroundColor: primaryTextColor,
                                     label: const Text(
@@ -186,7 +195,6 @@ class _SettingScreenState extends State<SettingScreen> {
                                 ),
                               ],
                             )
-
                           ],
                         ))
                   ],
