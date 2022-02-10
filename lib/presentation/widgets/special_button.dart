@@ -5,42 +5,39 @@ import '../../constraint.dart';
 
 class SpecialButton extends StatelessWidget {
   const SpecialButton({
-    Key? key, required this.content,
+    Key? key,
+    required this.content,
   }) : super(key: key);
 
   final String content;
+
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: ()=> {
-        Navigator.of(context).push(MaterialPageRoute(builder: (context) => PlayingScreen(previousCardCount: 20,),))
-      },
-      child: Container(
-          height: 50,
-          decoration: BoxDecoration(
-              color: Colors.white,
-              boxShadow: [
-                BoxShadow(color: Colors.black.withOpacity(0.4),
-                  offset: const Offset(0,4),
-                  blurRadius: 10,
-
-                ),
-              ],
-              borderRadius: BorderRadius.circular(50)),
-          child: Row(
-            children: <Widget>[
-              SvgPicture.asset("assets/icons/special_icon.svg"),
-              const SizedBox(width: 10),
-              Text(
-                content,
-                style: TextStyle(
-                    color: specialButtonText,
-                    fontSize: 21,
-                    fontFamily: "Facebook"),
-              )
+    return Container(
+        height: 50,
+        decoration: BoxDecoration(
+            color: Colors.white,
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.4),
+                offset: const Offset(0, 4),
+                blurRadius: 10,
+              ),
             ],
-            mainAxisAlignment: MainAxisAlignment.center,
-          )),
-    );
+            borderRadius: BorderRadius.circular(50)),
+        child: Row(
+          children: <Widget>[
+            SvgPicture.asset("assets/icons/special_icon.svg"),
+            const SizedBox(width: 10),
+            Text(
+              content,
+              style: TextStyle(
+                  color: specialButtonText,
+                  fontSize: 21,
+                  fontFamily: "Facebook"),
+            )
+          ],
+          mainAxisAlignment: MainAxisAlignment.center,
+        ));
   }
 }

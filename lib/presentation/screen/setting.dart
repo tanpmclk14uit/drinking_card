@@ -26,183 +26,185 @@ class _SettingScreenState extends State<SettingScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-          color: backgroundColor,
-          child: Column(
-            children: <Widget>[
-              Image.asset('assets/top.png'),
-              Expanded(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    const AppTitle(),
-                    const SizedBox(height: 30),
-                    Container(
-                        alignment: Alignment.center,
-                        margin: const EdgeInsets.symmetric(horizontal: 30),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: <Widget>[
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: <Widget>[
-                                Text('Ngôn ngữ', style: mainTextStyle),
-                                Container(
-                                  decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius: BorderRadius.circular(5)),
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 20),
-                                  child: DropdownButton(
-                                    icon: Icon(
-                                      Icons.keyboard_arrow_down,
-                                      color: primaryTextColor,
-                                      size: 35,
+    return SafeArea(
+      child: Scaffold(
+        body: Container(
+            color: backgroundColor,
+            child: Column(
+              children: <Widget>[
+                Image.asset('assets/top.png'),
+                Expanded(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      const AppTitle(),
+                      const SizedBox(height: 30),
+                      Container(
+                          alignment: Alignment.center,
+                          margin: const EdgeInsets.symmetric(horizontal: 30),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: <Widget>[
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: <Widget>[
+                                  Text('Ngôn ngữ', style: mainTextStyle),
+                                  Container(
+                                    decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius: BorderRadius.circular(5)),
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 20),
+                                    child: DropdownButton(
+                                      icon: Icon(
+                                        Icons.keyboard_arrow_down,
+                                        color: primaryTextColor,
+                                        size: 35,
+                                      ),
+                                      style: mainTextStyle,
+                                      underline:
+                                          const SizedBox(width: 0, height: 0),
+                                      items: languageList
+                                          .map<DropdownMenuItem<String>>(
+                                              (String value) =>
+                                                  DropdownMenuItem<String>(
+                                                    child: Text(value),
+                                                    value: value,
+                                                  ))
+                                          .toList(),
+                                      onChanged: (newValue) {
+                                        setState(() {
+                                          dropdownValue = newValue.toString();
+                                        });
+                                      },
+                                      value: dropdownValue,
                                     ),
+                                  )
+                                ],
+                              ),
+                              Row(
+                                children: <Widget>[
+                                  Text('Âm lượng:', style: mainTextStyle)
+                                ],
+                              ),
+                              const SizedBox(height: 10),
+                              Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: <Widget>[
+                                  Icon(
+                                    Icons.volume_up,
+                                    size: 30,
+                                    color: primaryTextColor,
+                                  ),
+                                  const SizedBox(width: 10),
+                                  Text(
+                                    'Nhạc nền:',
                                     style: mainTextStyle,
-                                    underline:
-                                        const SizedBox(width: 0, height: 0),
-                                    items: languageList
-                                        .map<DropdownMenuItem<String>>(
-                                            (String value) =>
-                                                DropdownMenuItem<String>(
-                                                  child: Text(value),
-                                                  value: value,
-                                                ))
-                                        .toList(),
-                                    onChanged: (newValue) {
-                                      setState(() {
-                                        dropdownValue = newValue.toString();
-                                      });
-                                    },
-                                    value: dropdownValue,
                                   ),
-                                )
-                              ],
-                            ),
-                            Row(
-                              children: <Widget>[
-                                Text('Âm lượng:', style: mainTextStyle)
-                              ],
-                            ),
-                            const SizedBox(height: 10),
-                            Row(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: <Widget>[
-                                Icon(
-                                  Icons.volume_up,
-                                  size: 30,
-                                  color: primaryTextColor,
-                                ),
-                                const SizedBox(width: 10),
-                                Text(
-                                  'Nhạc nền:',
-                                  style: mainTextStyle,
-                                ),
-                                Expanded(
-                                  child: Slider(
-                                    activeColor: primaryTextColor,
-                                    inactiveColor: primaryTextColor,
-                                    value: musicVolume,
-                                    max: 100,
-                                    divisions: 20,
-                                    label: musicVolume.round().toString(),
-                                    onChanged: (value) {
-                                      setState(() {
-                                        musicVolume = value;
-                                      });
-                                    },
-                                  ),
-                                )
-                              ],
-                            ),
-                            Row(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: <Widget>[
-                                Icon(
-                                  Icons.volume_up,
-                                  size: 30,
-                                  color: primaryTextColor,
-                                ),
-                                const SizedBox(width: 10),
-                                Text(
-                                  'Âm thanh:',
-                                  style: mainTextStyle,
-                                ),
-                                Expanded(
-                                  child: Slider(
-                                    activeColor: primaryTextColor,
-                                    inactiveColor: primaryTextColor,
-                                    value: soundVolume,
-                                    max: 100,
-                                    divisions: 20,
-                                    label: soundVolume.round().toString(),
-                                    onChanged: (value) {
-                                      setState(() {
-                                        soundVolume = value;
-                                      });
-                                    },
-                                  ),
-                                )
-                              ],
-                            ),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: <Widget>[
-                                Expanded(
-                                  child: FloatingActionButton.extended(
-                                    onPressed: () => {
-                                      //Back to main screen
-                                      Navigator.of(context).pop()
-                                    },
-                                    heroTag: "back",
-                                    icon: const Icon(Icons.exit_to_app),
-                                    foregroundColor: primaryTextColor,
-                                    label: const Text(
-                                      "Thoát",
-                                      style: TextStyle(
-                                        fontFamily: "Facebook",
-                                        fontSize: 21,
-                                        fontWeight: FontWeight.normal,
-                                      ),
+                                  Expanded(
+                                    child: Slider(
+                                      activeColor: primaryTextColor,
+                                      inactiveColor: primaryTextColor,
+                                      value: musicVolume,
+                                      max: 100,
+                                      divisions: 20,
+                                      label: musicVolume.round().toString(),
+                                      onChanged: (value) {
+                                        setState(() {
+                                          musicVolume = value;
+                                        });
+                                      },
                                     ),
-                                    backgroundColor: Colors.white,
+                                  )
+                                ],
+                              ),
+                              Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: <Widget>[
+                                  Icon(
+                                    Icons.volume_up,
+                                    size: 30,
+                                    color: primaryTextColor,
                                   ),
-                                ),
-                                const SizedBox(width: 10),
-                                Expanded(
-                                  child: FloatingActionButton.extended(
-                                    heroTag: "save",
-                                    onPressed: () => {
-                                      //Save
-                                    },
-                                    icon: const Icon(Icons.save),
-                                    foregroundColor: primaryTextColor,
-                                    label: const Text(
-                                      "Lưu",
-                                      style: TextStyle(
-                                        fontFamily: "Facebook",
-                                        fontSize: 21,
-                                        fontWeight: FontWeight.normal,
-                                      ),
+                                  const SizedBox(width: 10),
+                                  Text(
+                                    'Âm thanh:',
+                                    style: mainTextStyle,
+                                  ),
+                                  Expanded(
+                                    child: Slider(
+                                      activeColor: primaryTextColor,
+                                      inactiveColor: primaryTextColor,
+                                      value: soundVolume,
+                                      max: 100,
+                                      divisions: 20,
+                                      label: soundVolume.round().toString(),
+                                      onChanged: (value) {
+                                        setState(() {
+                                          soundVolume = value;
+                                        });
+                                      },
                                     ),
-                                    backgroundColor: Colors.white,
+                                  )
+                                ],
+                              ),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                children: <Widget>[
+                                  Expanded(
+                                    child: FloatingActionButton.extended(
+                                      onPressed: () => {
+                                        //Back to main screen
+                                        Navigator.of(context).pop()
+                                      },
+                                      heroTag: "back",
+                                      icon: const Icon(Icons.exit_to_app),
+                                      foregroundColor: primaryTextColor,
+                                      label: const Text(
+                                        "Thoát",
+                                        style: TextStyle(
+                                          fontFamily: "Facebook",
+                                          fontSize: 21,
+                                          fontWeight: FontWeight.normal,
+                                        ),
+                                      ),
+                                      backgroundColor: Colors.white,
+                                    ),
                                   ),
-                                ),
-                              ],
-                            )
-                          ],
-                        ))
-                  ],
+                                  const SizedBox(width: 10),
+                                  Expanded(
+                                    child: FloatingActionButton.extended(
+                                      heroTag: "save",
+                                      onPressed: () => {
+                                        //Save
+                                      },
+                                      icon: const Icon(Icons.save),
+                                      foregroundColor: primaryTextColor,
+                                      label: const Text(
+                                        "Lưu",
+                                        style: TextStyle(
+                                          fontFamily: "Facebook",
+                                          fontSize: 21,
+                                          fontWeight: FontWeight.normal,
+                                        ),
+                                      ),
+                                      backgroundColor: Colors.white,
+                                    ),
+                                  ),
+                                ],
+                              )
+                            ],
+                          ))
+                    ],
+                  ),
                 ),
-              ),
-              Image.asset('assets/bottom.png')
-            ],
-          )),
+                Image.asset('assets/bottom.png')
+              ],
+            )),
+      ),
     );
   }
 }
