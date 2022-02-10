@@ -27,7 +27,7 @@ class HomeScreen extends StatelessWidget {
                       const SizedBox(height: 50),
                       FloatingActionButton.extended(
                           onPressed: () => {
-                            Navigator.of(context).push(MaterialPageRoute(builder: (context) => const PlayingScreen(previousCardCount: 10, isFlitted: true,),))
+                            Navigator.of(context).push(MaterialPageRoute(builder: (context) => const PlayingScreen(previousCardCount: 10),))
                           },
                           icon: const Icon(Icons.play_circle_fill_outlined),
                           backgroundColor: Colors.white,
@@ -39,7 +39,7 @@ class HomeScreen extends StatelessWidget {
                       ),
                       GestureDetector(
                           onTap: () {
-                            Navigator.of(context).push(MaterialPageRoute(builder: (context) => const PlayingScreen(previousCardCount: 0, isFlitted: false,)));
+                            Navigator.of(context).push(MaterialPageRoute(builder: (context) => const PlayingScreen(previousCardCount: 0)));
                           },
                           child: const SpecialButton(content: "Ván mới")),
                       const SizedBox(height: 7),
