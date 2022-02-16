@@ -1,34 +1,23 @@
-import 'dart:math';
 import 'package:drinking_card/constraint.dart';
+import 'package:drinking_card/data/models/card.dart';
+import 'package:drinking_card/data/models/game_state.dart';
 import 'package:drinking_card/enums.dart';
-import 'package:drinking_card/presentation/widgets/card_back.dart';
-import 'package:drinking_card/presentation/widgets/card_front.dart';
+import 'package:drinking_card/presentation/widgets/card.dart';
 import 'package:drinking_card/presentation/widgets/custom_app_bar.dart';
 import 'package:drinking_card/presentation/widgets/special_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 class PlayingScreen extends StatefulWidget {
-  const PlayingScreen({Key? key, required this.previousCardCount})
-      : super(key: key);
+  PlayingScreen({Key? key, required this.previousCardCount}) : super(key: key);
   final int previousCardCount;
+  final GameState gameState = GameState.fakeData();
 
   @override
   _PlayingScreenState createState() => _PlayingScreenState();
 }
 
 class _PlayingScreenState extends State<PlayingScreen> {
-  double angle = pi;
-  bool isFlipped = false;
-
-  void _flip() {
-    setState(() {
-      if (!isFlipped) {
-        angle = (angle + pi) % (2 * pi);
-      }
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -42,35 +31,10 @@ class _PlayingScreenState extends State<PlayingScreen> {
             children: <Widget>[
               CustomAppBar(previousCardCount: widget.previousCardCount),
               Expanded(
-                  child: GestureDetector(
-                onTap: _flip,
-                child: TweenAnimationBuilder(
-                  tween: Tween<double>(begin: pi, end: angle),
-                  duration: const Duration(seconds: 1),
-                  builder: (context, double value, child) {
-                    if (value >= (pi / 2)) {
-                      isFlipped = false;
-                    } else {
-                      isFlipped = true;
-                    }
-                    return (Transform(
-                        alignment: Alignment.center,
-                        transform: Matrix4.identity()
-                          ..setEntry(3, 2, 0.001)
-                          ..rotateY(value),
-                        child: isFlipped == true
-                            ? const CardFront(
-                                type: CardType.truth,
-                                content:
-                                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-                              )
-                            : Transform(
-                                transform: Matrix4.identity()..rotateY(pi),
-                                alignment: Alignment.center,
-                                child: const CardBack(type: CardType.truth))));
-                  },
-                ),
-              )),
+                  child: Stack(
+                      children: widget.gameState.playingCards
+                          .map((e) => PlayingCard(drinkingCard: e))
+                          .toList())),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
@@ -116,7 +80,8 @@ class _PlayingScreenState extends State<PlayingScreen> {
               GestureDetector(
                 onTap: () {
                   setState(() {
-                    isFlipped = false;
+                    widget.gameState.playingCards.remove(widget.gameState.currentCard);
+                    widget.gameState.currentCard = widget.gameState.playingCards.last;
                   });
                 },
                 child: const SpecialButton(

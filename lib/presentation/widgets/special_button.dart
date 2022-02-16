@@ -1,4 +1,3 @@
-import 'package:drinking_card/presentation/screen/playing.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import '../../constraint.dart';

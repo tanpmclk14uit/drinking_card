@@ -1,8 +1,10 @@
+import 'package:drinking_card/presentation/screen/card_management.dart';
 import 'package:drinking_card/presentation/screen/playing.dart';
 import 'package:drinking_card/presentation/screen/setting.dart';
 import 'package:drinking_card/presentation/widgets/title.dart';
 import 'package:drinking_card/constraint.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import '../widgets/special_button.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -27,7 +29,7 @@ class HomeScreen extends StatelessWidget {
                       const SizedBox(height: 50),
                       FloatingActionButton.extended(
                           onPressed: () => {
-                            Navigator.of(context).push(MaterialPageRoute(builder: (context) => const PlayingScreen(previousCardCount: 10),))
+                            Navigator.of(context).push(MaterialPageRoute(builder: (context) => PlayingScreen(previousCardCount: 10),))
                           },
                           icon: const Icon(Icons.play_circle_fill_outlined),
                           backgroundColor: Colors.white,
@@ -39,12 +41,14 @@ class HomeScreen extends StatelessWidget {
                       ),
                       GestureDetector(
                           onTap: () {
-                            Navigator.of(context).push(MaterialPageRoute(builder: (context) => const PlayingScreen(previousCardCount: 0)));
+                            Navigator.of(context).push(MaterialPageRoute(builder: (context) => PlayingScreen(previousCardCount: 0)));
                           },
                           child: const SpecialButton(content: "Ván mới")),
                       const SizedBox(height: 7),
                       FloatingActionButton.extended(
-                          onPressed: () => {},
+                          onPressed: () => {
+                            Navigator.of(context).push(MaterialPageRoute(builder: (context) => const CardManagement(),))
+                          },
                           heroTag: "edit",
                           icon: const Icon(Icons.edit),
                           backgroundColor: Colors.white,
@@ -64,7 +68,9 @@ class HomeScreen extends StatelessWidget {
                           label: Text("Cài đặt", style: buttonTextStyle)),
                       const SizedBox(height: 7),
                       FloatingActionButton.extended(
-                          onPressed: () => {},
+                          onPressed: () => {
+                            SystemNavigator.pop()
+                          },
                           icon: const Icon(Icons.exit_to_app),
                           backgroundColor: Colors.white,
                           heroTag: "exit",
